@@ -1,2 +1,4 @@
 /node_modules
 /sandbox*
+/articles/[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]_*.md
+/books/sandbox*
