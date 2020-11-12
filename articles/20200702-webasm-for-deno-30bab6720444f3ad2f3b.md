@@ -51,6 +51,11 @@ cargo-generate はテンプレートをもとにプロジェクトを初期化�
 sed -i -e "s/fn alert(s: &str);/#[wasm_bindgen(js_namespace = console, js_name = log)] fn alert(s: \\&str);/" src/lib.rs
 ```
 
+:::message
+Deno v1.5.0 で alert が追加されたので、このセクションは飛ばしても大丈夫です
+https://github.com/denoland/deno/blob/master/Releases.md#150--20201027
+:::
+
 初期化時点で js の alert を呼び出す処理が書かれていますが
 deno に alert はないので代わりに console.log を呼ぶように編集しています。
 
