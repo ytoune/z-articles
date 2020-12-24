@@ -55,5 +55,8 @@ yarn add next preact preact-render-to-string \
 | react | 522 kB | 416.92 KB
 | preact | 39.8 kB | 301.24 KB
 
+transferred が実際に chrome でアクセスして確認したサイズで
+chunks が `@next/bundle-analyzer` で All に表示されたサイズです
+
 `@next/bundle-analyzer` での計測結果にあまり差がないのが気になりますが
 いずれにしても preact にした方がファイルサイズは小さくできそうです
