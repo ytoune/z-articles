@@ -8,6 +8,6 @@
   },
   "devDependencies": {
     "cross-fetch": "3.0.6",
-    "zenn-cli": "0.1.59"
+    "zenn-cli": "0.1.63"
   }
 }
