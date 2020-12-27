@@ -8,7 +8,7 @@ published: true
 
 # 実際に動かしたもの
 
-[ソースコード](https://gitlab.com/yt-practice/lightsail-container-20201222)
+実際に試したコードのリポジトリは[こちら](https://gitlab.com/yt-practice/lightsail-container-20201222)
 
 # IAM 権限
 

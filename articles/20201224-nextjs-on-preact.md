@@ -7,7 +7,7 @@ published: true
 ---
 
 preact が React より軽量らしいので実際にはかってみます
-実際に試したコードのレポジトリは[こちら](https://gitlab.com/yt-practice/next-bundle-analyzer-20201224)
+実際に試したコードのリポジトリは[こちら](https://gitlab.com/yt-practice/next-bundle-analyzer-20201224)
 
 # インストール
 
