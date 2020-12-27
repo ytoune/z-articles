@@ -13,7 +13,6 @@ published: true
 # IAM 権限
 
 AWS Console の GUI で設定しようとしたらコンテナ関係はまだ GUI には設定がないっぽい？
-多分下記で十分なはずですが `"lightsail:*"` で試していたので未検証です
 Resource も制限できればなお良いです
 
 ```json
@@ -85,7 +84,7 @@ docker build -t myapp .
 
 aws lightsail push-container-image --region ap-northeast-1 --service-name ${APP_SERVICE_NAME} --label api --image myapp
 aws lightsail get-container-images --service-name ${APP_SERVICE_NAME} | node scripts/make-container.js
-aws lightsail create-container-service-deployment --service-name ${APP_SERVICE_NAME} --cli-input-json file://$(pwd)/container.json | node scripts/check-result.js
+aws lightsail create-container-service-deployment --service-name ${APP_SERVICE_NAME} --cli-input-json file://$(pwd)/container.json
 ```
 
 ### scripts/make-container.js
@@ -134,11 +133,6 @@ Promise.resolve()
   })
 ```
 
-### scripts/check-result.js
-
-必要に応じてなにかしたりできます
-多分なくても問題ないはずです（未検証）
-
 # 改善案
 
 docker build がどうしても時間がかかると思うのでどうにかしたいですね
@@ -146,6 +140,7 @@ docker build がどうしても時間がかかると思うのでどうにかし�
 次回それを pull するようにすれば速くなるかもしれません
 
 ```shell
+docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY_IMAGE
 docker pull $CI_REGISTRY_IMAGE:latest || true
 docker build --cache-from $CI_REGISTRY_IMAGE:latest --tag $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA --tag $CI_REGISTRY_IMAGE:latest .
 docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
