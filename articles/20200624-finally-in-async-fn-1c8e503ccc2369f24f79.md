@@ -1,19 +1,18 @@
 ---
-title: "finally で async ジェネレータの反復完了時、中断時、エラー発生時の全てで処理を行う"
-emoji: "🪂"
-type: "tech"
-topics: ["javascript", "typescript", "generator", "asyncawait"]
+title: 'finally で async ジェネレータの反復完了時、中断時、エラー発生時の全てで処理を行う'
+emoji: '🪂'
+type: 'tech'
+topics: ['javascript', 'typescript', 'generator', 'asyncawait']
 published: true
 ---
 
 DB やファイルなどからデータをたくさん取り出して
-それぞれのデータに対して何かしたい場合は多くあると思います
+それぞれのデータに対して何かしたい場合は多くあると思います。
 
 ```ts
 async function* readLines() {
   console.log('ファイル開く処理')
-  for (let i = 1; i <= 5; ++i)
-    yield { textContent: `${i} 番目の行` }
+  for (let i = 1; i <= 5; ++i) yield { textContent: `${i} 番目の行` }
   console.log('ファイル閉じる処理')
 }
 for await (const line of readLines()) {
@@ -30,13 +29,12 @@ for await (const line of readLines()) {
 
 ## 解決すべき課題
 
-上記の `readLines` には問題があります
+上記の `readLines` には問題があります。
 
 ```ts
 async function* readLines() {
   console.log('ファイル開く処理')
-  for (let i = 1; i <= 5; ++i)
-    yield { textContent: `${i} 番目の行` }
+  for (let i = 1; i <= 5; ++i) yield { textContent: `${i} 番目の行` }
   console.log('ファイル閉じる処理')
 }
 let tmp = 0
@@ -50,9 +48,13 @@ for await (const line of readLines()) {
 // 3 番目の行
 ```
 
-途中で `break` すると *ファイル閉じる処理* が実行されません
+途中で `break` すると _ファイル閉じる処理_ が実行されません。
+
+<!-- textlint-disable ja-technical-writing/ja-no-mixed-period -->
 
 あるいは途中でエラーが起こると…
+
+<!-- textlint-enable -->
 
 ```ts
 async function* readLines() {
@@ -72,18 +74,17 @@ for await (const line of readLines()) {
 // Error: 何かエラー
 ```
 
-こちらでも *ファイル閉じる処理* が実行されません
+こちらでも _ファイル閉じる処理_ が実行されません。
 
 ## finally を使う
 
-反復完了時、または中断時、そしてエラー発生時の全てで処理を行うには `finally` が使えます
+反復完了時、または中断時、そしてエラー発生時の全てで処理を行うには `finally` が使えます。
 
 ```ts
 async function* readLines() {
   console.log('ファイル開く処理')
   try {
-    for (let i = 1; i <= 5; ++i)
-      yield { textContent: `${i} 番目の行` }
+    for (let i = 1; i <= 5; ++i) yield { textContent: `${i} 番目の行` }
   } finally {
     console.log('ファイル閉じる処理')
   }

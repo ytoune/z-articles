@@ -1,8 +1,8 @@
 ---
-title: "Rust で WebAssembly を書いて Deno で実行する"
-emoji: "🦖"
-type: "tech"
-topics: ["rust", "webassembly", "deno", "wasmpack"]
+title: 'Rust で WebAssembly を書いて Deno で実行する'
+emoji: '🦖'
+type: 'tech'
+topics: ['rust', 'webassembly', 'deno', 'wasmpack']
 published: true
 ---
 
@@ -59,7 +59,7 @@ https://github.com/denoland/deno/blob/master/Releases.md#150--20201027
 初期化時点で js の alert を呼び出す処理が書かれていますが
 deno に alert はないので代わりに console.log を呼ぶように編集しています。
 
-```diff
+```diff rust
   #[wasm_bindgen]
   extern "C" {
 -   fn alert(s: &str);
@@ -79,13 +79,13 @@ deno はブラウザとの互換性を重視しています。
 
 現状でも `wasm-pack` で作成したライブラリを web サーバーにおけば動くと思うのですが
 ローカルで作成・実行までやろうとすると
-ローカルのファイルを fetch で取ろうとして（ `fetch('file:///user/rithmety/myproject/pkg/index_bg.wasm')` ）エラーが発生します。
+ローカルのファイルを fetch するため ( `fetch('file:///user/rithmety/myproject/pkg/index_bg.wasm')` ) エラーが発生します。
 [deno が file:// を fetch できるようにする計画はあるようです。](https://github.com/denoland/deno/issues/2150)
 
 今回はランタイムを直に編集して対応しています。
-（ Windows だと `new URL(input).pathname` の部分が期待通りに動かないかもしれません。 ）
+( Windows だと `new URL(input).pathname` の部分が期待通りに動かないかもしれません。 )
 
-```diff
+```diff js
   async function init(input) {
     if (typeof input === 'undefined') {
 -     input = import.meta.url.replace(/\.js$/, '_bg.wasm');

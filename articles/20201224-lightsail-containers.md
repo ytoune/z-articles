@@ -8,12 +8,12 @@ published: true
 
 # 実際に動かしたもの
 
-実際に試したコードのリポジトリは[こちら](https://gitlab.com/yt-practice/lightsail-container-20201222)
+実際に試したコードのリポジトリは[こちら](https://gitlab.com/yt-practice/lightsail-container-20201222)です。
 
 # IAM 権限
 
 AWS Console の GUI で設定しようとしたらコンテナ関係はまだ GUI には設定がないっぽい？
-Resource も制限できればなお良いです
+Resource も制限できればなお良いです。
 
 ```json
 {
@@ -36,7 +36,7 @@ Resource も制限できればなお良いです
 
 # .gitlab-ci.yml
 
-本体を deploy.sh に分離しているので短いです
+本体を deploy.sh に分離しているので短いです。
 
 ```yml
 services:
@@ -54,20 +54,24 @@ app-deploy:
 
 ## ytoune/aws-lightsail-cli
 
-使用しているイメージは[こちら](https://hub.docker.com/r/ytoune/aws-lightsail-cli)です
-今回の用途のために新規作成しました
+使用しているイメージは[こちら](https://hub.docker.com/r/ytoune/aws-lightsail-cli)です。
+今回の用途のために新規作成しました。
 
 後述する `aws lightsail push-container-image` が aws-cli と lightsailctl と docker をすべて要求するので
-docker をベースに aws-cli と lightsailctl を入れました
-json 加工用に Node.js も入れてます
+docker をベースに aws-cli と lightsailctl を入れました。
+json 加工用に Node.js も入れてます。
 
 ## deploy.sh
 
-`$AWS_ACCESS_KEY_ID` と `$AWS_SECRET_ACCESS_KEY` を使ってくれないみたいなので `~/.aws/credentials` を生成してます
+`$AWS_ACCESS_KEY_ID` と `$AWS_SECRET_ACCESS_KEY` を使ってくれないみたいなので `~/.aws/credentials` を生成してます。
+
+<!-- textlint-disable ja-technical-writing/no-doubled-conjunction -->
 
 `docker build` したのち
 `aws lightsail push-container-image` でイメージを push して
-`aws lightsail create-container-service-deployment` でデプロイしています
+`aws lightsail create-container-service-deployment` でデプロイしています。
+
+<!-- textlint-enable -->
 
 ```shell
 set -Ceu
@@ -89,7 +93,7 @@ aws lightsail create-container-service-deployment --service-name ${APP_SERVICE_N
 
 ### scripts/make-container.js
 
-`aws lightsail create-container-service-deployment` で使用する `container.json` を生成してます
+`aws lightsail create-container-service-deployment` で使用する `container.json` を生成してます。
 
 ```js
 const { promises: fs } = require('fs')
@@ -135,9 +139,9 @@ Promise.resolve()
 
 # 改善案
 
-docker build がどうしても時間がかかると思うのでどうにかしたいですね
+docker build がどうしても時間がかかると思うのでどうにかしたいですね。
 下記のようにビルド済のイメージを毎回どこかに push して
-次回それを pull するようにすれば速くなるかもしれません
+次回それを pull するようにすれば速くなるかもしれません。
 
 ```shell
 docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY_IMAGE
@@ -151,5 +155,5 @@ docker push $CI_REGISTRY_IMAGE:latest
 
 [プライベートなコンテナイメージを Amazon Lightsail コンテナサービスで使う](https://dev.classmethod.jp/articles/how-to-use-private-images-with-amazon-lightsail-container-service/)
 [Amazon Lightsail API Reference](https://docs.aws.amazon.com/lightsail/2016-11-28/api-reference/Welcome.html)
-[AWS Lightsail ContainersにGitHub Actionsでデプロイする。](https://zenn.dev/devneko/articles/196b9befb48b41798071)
+[AWS Lightsail Containers に GitHub Actions でデプロイする。](https://zenn.dev/devneko/articles/196b9befb48b41798071)
 [Building Docker images with GitLab CI/CD # Using Docker caching](https://docs.gitlab.com/ee/ci/docker/using_docker_build.html#using-docker-caching)

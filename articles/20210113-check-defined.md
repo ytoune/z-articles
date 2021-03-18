@@ -6,14 +6,14 @@ topics: [javascript, nodejs]
 published: false
 ---
 
-グローバル変数が定義されているかどうかを確かめるコードとして下記が有名です
+グローバル変数が定義されているかどうかを確かめるコードとして下記が有名です。
 
 ```js
 // window が定義されているかどうか
 'undefined' !== typeof window
 ```
 
-これを短く書く方法として下記があります
+これを短く書く方法として下記があります。
 
 ```js
 // window が定義されているかどうか
@@ -21,15 +21,15 @@ published: false
 ```
 
 ブラウザ上では `self.window` の方が短いですが  
-上記はブラウザ上かどうかを判断する場合などで使えます  
+上記はブラウザ上かどうかを判断する場合などで使えます。
 
 # 説明
 
-`typeof` で得られる文字列のうち辞書順で最も後ろにくるのが `undefined` であることを利用しています  
-なので `'t' > typeof window` でも同じ結果が得られます  
+`typeof` で得られる文字列のうち辞書順で最も後ろにくるのが `undefined` であることを利用しています。  
+なので `'t' > typeof window` でも同じ結果が得られます。
 
 ```js
-[
+;[
   'undefined',
   'object',
   'boolean',
@@ -39,20 +39,22 @@ published: false
   'symbol',
   'function',
   'object',
-].sort().map(s => ['u' > s, 'u' < s, s])
+]
+  .sort()
+  .map(s => ['u' > s, 'u' < s, s])
 ```
 
-| `'u' > s` | `'u' < s` | `s`
-| :-- | :-- | :--
-| `true` | `false` | `"bigint"`
-| `true` | `false` | `"boolean"`
-| `true` | `false` | `"function"`
-| `true` | `false` | `"number"`
-| `true` | `false` | `"object"`
-| `true` | `false` | `"object"`
-| `true` | `false` | `"string"`
-| `true` | `false` | `"symbol"`
-| `false` | `true` | `"undefined"`
+| `'u' > s` | `'u' < s` | `s`           |
+| :-------- | :-------- | :------------ |
+| `true`    | `false`   | `"bigint"`    |
+| `true`    | `false`   | `"boolean"`   |
+| `true`    | `false`   | `"function"`  |
+| `true`    | `false`   | `"number"`    |
+| `true`    | `false`   | `"object"`    |
+| `true`    | `false`   | `"object"`    |
+| `true`    | `false`   | `"string"`    |
+| `true`    | `false`   | `"symbol"`    |
+| `false`   | `true`    | `"undefined"` |
 
 正直読みやすいとは言い難いのですが  
-どうしても他にファイルサイズを削れる場所がない場合に使えるかもしれません…  
+どうしても他にファイルサイズを削れる場所がない場合に使えるかもしれません…

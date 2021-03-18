@@ -1,13 +1,13 @@
 ---
-title: "TypeScript で web サーバを書く"
-emoji: "🎼"
-type: "tech"
-topics: ["typescript", "nodejs", "lambda"]
+title: 'TypeScript で web サーバを書く'
+emoji: '🎼'
+type: 'tech'
+topics: ['typescript', 'nodejs', 'lambda']
 published: true
 ---
 
-Node.js の入ったサーバ または AWS Lambda + API Gateway へのデプロイを目的とした
-web サーバを TypeScript で書いていくための個人的なベストプラクティスをまとめました
+Node.js の入ったサーバ、または AWS Lambda + API Gateway へのデプロイを目的とした
+web サーバを TypeScript で書いていくための個人的なベストプラクティスをまとめました。
 
 # デプロイする web サーバの例
 
@@ -34,7 +34,7 @@ app.listen(8080, (err, address) => {
 })
 ```
 
-AWS Lambda + API Gateway へのデプロイする場合、下記も用意します
+AWS Lambda + API Gateway へのデプロイする場合、下記も用意します。
 
 ```ts:src/lambda.ts
 import awsLambdaFastify from 'aws-lambda-fastify'
@@ -43,12 +43,12 @@ const proxy = awsLambdaFastify(app, { binaryMimeTypes: ['application/octet-strea
 exports.handler = proxy
 ```
 
-ローカルで探索的テストしたりするときに便利なので Lambda に上げるとしても上記 `server.ts` を用意しておくと便利です
+ローカルで探索的テストしたりするときに便利なので Lambda に上げるとしても上記 `server.ts` を用意しておくと便利です。
 
 # ts-node-dev
 
 実際に動かしながら試す場合 ts-node-dev を使うことで
-変更されたファイルのみを再トランスパイルして node を再実行してくれます
+変更されたファイルのみを再トランスパイルして node を再実行してくれます。
 
 ```json:package.json
 "scripts": {
@@ -58,22 +58,22 @@ exports.handler = proxy
 
 ### `-r tsconfig-paths/register`
 
-`tsconfig` の `paths` の設定を読むようにします
-これによって `import { app } from '~/app'` のようなコードが（開発時に）動くようにします
+`tsconfig` の `paths` の設定を読むようにします。
+これによって `import { app } from '~/app'` のようなコードが（開発時に）動くようにします。
 
 ### `-r dotenv/config`
 
-ローカルでの環境変数を `.env` から読めるようにします
+ローカルでの環境変数を `.env` から読めるようにします。
 
 ### `-O '{\"module\":\"commonjs\"}'`
 
 詳細は後述しますがバンドラが Tree Shaking できるように
-tsconfig は `module: "esnext"` としていることが多いです
-Node.js はそのままでは esmodule を解釈できないのでここで対応してます
+tsconfig は `module: "esnext"` としていることが多いです。
+Node.js はそのままでは esmodule を解釈できないのでここで対応してます。
 
 # ts-jest
 
-jest が TypeScript を読めるようにします
+jest が TypeScript を読めるようにします。
 
 ```json:package.json
 "jest": {
@@ -86,17 +86,17 @@ jest が TypeScript を読めるようにします
 # parcel or webpack or ncc
 
 ファイル容量を減らす効果もあるのですが
-`import { app } from '~/app'` のように書けるようにするために使ってることが多いです
+`import { app } from '~/app'` のように書けるようにするため使ってることが多いです。
 
 ncc は使ったことがないのですが設定不要で
-tsconfig の paths を見てくれるらしいので、これが一番楽かもしれません
+tsconfig の paths を見てくれるらしいので、これが一番楽かもしれません。
 
-私は parcel を使うことが多いです
-ライブラリがうまくバンドルできないことがあり
+私は parcel を使うことが多いです。
+ライブラリをうまくバンドルできないことがあり
 （DB を触るライブラリとか wasm を含むライブラリとか）
 `node_modules` 以外を `dist/lambda.js` にまとめたのち
 `yarn install --production --modules-folder dist/node_modules` でライブラリをインストールして
-本番環境に投げるような実装がやりやすいです
+本番環境に投げるような実装がやりやすいです。
 
 ```json:package.json
 "scripts": {
@@ -111,4 +111,4 @@ tsconfig の paths を見てくれるらしいので、これが一番楽かも�
 # あとがき
 
 正直 web サーバを書くなら NestJS や Blitz.js のような
-フレームワークを使った方が良いのではと思っています
+フレームワークを使った方が良いのではと思っています。

@@ -30,33 +30,37 @@ yarn add next preact preact-render-to-string \
 
 ## react
 
-`next build && next start` して chrome でアクセスしてみる
+`next build && next start` して chrome でアクセスしてみる。
 
 ![image](https://user-images.githubusercontent.com/14814410/103083764-93f2e900-4620-11eb-8deb-9648185941da.png)
 
-`@next/bundle-analyzer` で計測
+`@next/bundle-analyzer` で計測。
 
 ![image](https://user-images.githubusercontent.com/14814410/103083140-0367d900-461f-11eb-9207-4023c457b61f.png)
 
 ## preact
 
-`next build && next start` して chrome でアクセスしてみる
+`next build && next start` して chrome でアクセスしてみる。
 
 ![image](https://user-images.githubusercontent.com/14814410/103083783-9e14e780-4620-11eb-80f3-5e4cc2edb4f9.png)
 
-`@next/bundle-analyzer` で計測
+`@next/bundle-analyzer` で計測。
 
 ![image](https://user-images.githubusercontent.com/14814410/103083290-635e7f80-461f-11eb-8117-401a50d090ad.png)
 
 # まとめ
 
-| | transferred | chunks
-| :-- | :-- | :--
-| react | 522 kB | 416.92 KB
-| preact | 39.8 kB | 301.24 KB
+|        | transferred | chunks    |
+| :----- | :---------- | :-------- |
+| react  | 522 kB      | 416.92 KB |
+| preact | 39.8 kB     | 301.24 KB |
 
-transferred が実際に chrome でアクセスして確認したサイズで
-chunks が `@next/bundle-analyzer` で All に表示されたサイズです
+<!-- textlint-disable ja-technical-writing/no-doubled-conjunction -->
 
-`@next/bundle-analyzer` での計測結果にあまり差がないのが気になりますが
-いずれにしても preact にした方がファイルサイズは小さくできそうです
+transferred が実際に Chrome でアクセスして確認したサイズで
+chunks が `@next/bundle-analyzer` で All に表示されたサイズです。
+
+<!-- textlint-enable ja-technical-writing/no-doubled-conjunction -->
+
+`@next/bundle-analyzer` での計測結果にあまり差がないのは気になりますが
+いずれにしても preact にした方がファイルサイズは小さくできそうです。
