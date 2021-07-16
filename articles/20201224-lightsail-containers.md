@@ -96,7 +96,7 @@ aws lightsail create-container-service-deployment --service-name ${APP_SERVICE_N
 `aws lightsail create-container-service-deployment` で使用する `container.json` を生成してます。
 
 ```js
-const { promises: fs } = require('fs')
+const fs = require('fs/promises')
 const path = require('path')
 Promise.resolve()
   .then(async () => {

@@ -1,5 +1,5 @@
 const { fetch } = require('cross-fetch')
-const { promises: fs } = require('fs')
+const fs = require('fs/promises')
 const path = require('path')
 
 ;(async () => {
