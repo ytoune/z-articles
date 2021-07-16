@@ -3,7 +3,7 @@ title: グローバル変数が定義されているかどうかを「短い文�
 emoji: 🔍
 type: tech
 topics: [javascript, nodejs]
-published: false
+published: true
 ---
 
 グローバル変数が定義されているかどうかを確かめるコードとして下記が有名です。
