@@ -9,6 +9,11 @@ published: true
 preact が React より軽量らしいので実際にはかってみます
 実際に試したコードのリポジトリは[こちら](https://gitlab.com/yt-practice/next-bundle-analyzer-20201224)
 
+:::message
+Next.js に preact を入れる場合、この記事内の方法よりも next-plugin-preact を入れる方がおすすめです。  
+[next-plugin-preact を使ってみた記事](./20210222-keizai-mawasu)
+:::
+
 # インストール
 
 ## react
