@@ -11,12 +11,8 @@ published: true
 ```shell
 cargo generate --git https://github.com/rustwasm/wasm-pack-template -n myproject
 cd myproject
-# deno は alert がないので代わりに console.log する
-sed -i -e "s/fn alert(s: &str);/#[wasm_bindgen(js_namespace = console, js_name = log)] fn alert(s: \\&str);/" src/lib.rs
 
 wasm-pack build --target web --out-name index
-# deno は fetch('file:// ...') をサポートしていない
-sed -i -e "s#input = import\\.meta\\.url\\.replace(/\\\\\\.js$/, '_bg\\.wasm');#input = import.meta.url.replace(/\\\\.js$/, '_bg.wasm'); if ('undefined' !== typeof Deno) input = new WebAssembly.Module(await Deno.readFile(new URL(input).pathname));#" pkg/index.js
 
 echo "import * as pkg from './pkg/index.js'
 await pkg.default()
@@ -52,8 +48,9 @@ sed -i -e "s/fn alert(s: &str);/#[wasm_bindgen(js_namespace = console, js_name =
 ```
 
 :::message
-Deno v1.5.0 で alert が追加されたので、このセクションは飛ばしても大丈夫です
-https://github.com/denoland/deno/blob/master/Releases.md#150--20201027
+追記
+Deno v1.5.0 で alert が追加されたので、このセクションは飛ばしても大丈夫です。  
+https://github.com/denoland/deno/releases/tag/v1.5.0
 :::
 
 初期化時点で js の alert を呼び出す処理が書かれていますが
@@ -73,6 +70,12 @@ deno に alert はないので代わりに console.log を呼ぶように編集�
 wasm-pack build --target web --out-name index
 sed -i -e "s#input = import\\.meta\\.url\\.replace(/\\\\\\.js$/, '_bg\\.wasm');#input = import.meta.url.replace(/\\\\.js$/, '_bg.wasm'); if ('undefined' !== typeof Deno) input = new WebAssembly.Module(await Deno.readFile(new URL(input).pathname));#" pkg/index.js
 ```
+
+:::message
+追記
+Deno v1.16.0 でローカルのファイルの fetch が追加されたので、 sed の実行が不要になりました。  
+https://github.com/denoland/deno/releases/tag/v1.16.0
+:::
 
 deno はブラウザとの互換性を重視しています。
 将来的には `wasm-pack build --target web` だけで問題なく動くようになるのではないかと思います。
