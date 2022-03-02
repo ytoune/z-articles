@@ -3,7 +3,7 @@ title: Unicode 文字列の長さを計測する
 emoji: 📏
 type: tech
 topics: [unicode, rust, javascript, typescript]
-published: false
+published: true
 ---
 
 JavaScript ( Web 上 ) で Unicode 文字列の長さを計測したくなったので調べました。
@@ -91,31 +91,16 @@ export const getWidth = (str: string): number => {
   return list.map((r): number => size(r, true)).reduce((q, w) => q + w, 0)
 }
 const size = (char: string, isCjk: boolean) => {
-  const w = easta(char)
-  switch (w) {
-    case 'N': {
-      const k = c.codePointAt(0)
-      if (!k) return 0
-      const w2 = UnicodeData[String(k) as keyof typeof UnicodeData]
-      switch (w2) {
-        case 'Me':
-        case 'Mn':
-        case 'Cf':
-        case 'Cc':
-          return 0
-      }
-      return 1
-    }
-    case 'F':
-    case 'W':
-      return 2
-    case 'A':
-      return isCjk ? 2 : 1
-    case 'H':
-    case 'Na':
-    default:
-      return 1
-  }
+  const w = easta(c)
+  const k = c.codePointAt(0)
+  if (!k) return 0
+  const w2 = UnicodeData[k as unknown as keyof typeof UnicodeData]
+  if ('Me' === w2 || 'Mn' === w2 || 'Cf' === w2 || 'Cc' === w2) return 0
+  if ('Cs' === w2) return 2
+  if ('F' === w || 'W' === w) return 2
+  if ('A' === w) return isCjk ? 2 : 1
+  if ('N' === w && ('Zl' === w2 || 'Zp' === w2)) return 1
+  return 1
 }
 ```
 
@@ -124,4 +109,4 @@ Unicode の仕様を読み込む必要があるなど大変な点もあります
 
 # 感想
 
-Unicode むずかしい
+Unicode とてもむずかしい……
