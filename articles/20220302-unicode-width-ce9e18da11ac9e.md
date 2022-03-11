@@ -1,12 +1,12 @@
 ---
-title: Unicode 文字列の長さを計測する
+title: Unicode 文字列の幅を計測する
 emoji: 📏
 type: tech
 topics: [unicode, rust, javascript, typescript]
 published: true
 ---
 
-JavaScript ( Web 上 ) で Unicode 文字列の長さを計測したくなったので調べました。
+JavaScript ( Web 上 ) で Unicode 文字列の幅を計測したくなったので調べました。
 
 表示上の幅を測る場合 [canvas の measureText](https://developer.mozilla.org/ja/docs/Web/API/CanvasRenderingContext2D/measureText) があります。  
 フォントに依存してしまう、絵文字の幅がおかしい？などの注意点はあるもののピクセル単位で計測できるのは便利そうです。
