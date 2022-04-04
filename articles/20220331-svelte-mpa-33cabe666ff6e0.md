@@ -106,7 +106,7 @@ MPA をすると SSR のみになるので Svelte や SvelteKit に関するド�
 現在の SvelteKit は hydration するかどうかの指定の最小単位がページ単位になっており
 かつ設定ファイルの `browser.hydrate` を `false` にしているとページの hydration を有効にできない。
 つまり Svelte で動的に動かしたい場合そのページ以外の全ページで hydration をオフにする必要があり面倒。
-加えて、JS の有効なページのために `.svelte-kit/output/client/_app` が消せなくない。
+加えて、JS の有効なページのために `.svelte-kit/output/client/_app` が消せない。
 [コンポーネント単位の hydration が実装](https://github.com/sveltejs/kit/issues/1390)されても `client/_app` が使われそう。
 
 別途作った JavaScript を script タグで読み込むという方法はあるが
