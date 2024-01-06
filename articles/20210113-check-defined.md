@@ -38,7 +38,6 @@ published: true
   'string',
   'symbol',
   'function',
-  'object',
 ]
   .sort()
   .map(s => ['u' > s, 'u' < s, s])
@@ -51,10 +50,15 @@ published: true
 | `true`    | `false`   | `"function"`  |
 | `true`    | `false`   | `"number"`    |
 | `true`    | `false`   | `"object"`    |
-| `true`    | `false`   | `"object"`    |
 | `true`    | `false`   | `"string"`    |
 | `true`    | `false`   | `"symbol"`    |
 | `false`   | `true`    | `"undefined"` |
 
 正直読みやすいとは言い難いのですが  
 どうしても他にファイルサイズを削れる場所がない場合に使えるかもしれません…
+
+# 追記 Tuple と Record について
+
+現在 (2024/01/06) Records & Tuples Proposal が Stage 2 になっています。  
+追加されると[`typeof` が `'record'` や `'tuple'` を返す場合が増えます](https://github.com/tc39/proposal-record-tuple?tab=readme-ov-file#typeof)。  
+その場合は上記の `'t' > typeof window` が使えなくなるので注意が必要です。
