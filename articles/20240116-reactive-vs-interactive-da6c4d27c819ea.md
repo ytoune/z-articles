@@ -1,7 +1,7 @@
 ---
 title: リアクティブとレスポンシブとインタラクティブの違い
 emoji: 💬
-type: tech
+type: idea
 topics: [reactive, interactive, responsive]
 published: true
 ---
