@@ -1,4 +1,3 @@
-const { fetch } = require('cross-fetch')
 const fs = require('fs/promises')
 const path = require('path')
 

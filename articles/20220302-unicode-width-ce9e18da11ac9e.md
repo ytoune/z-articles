@@ -41,17 +41,16 @@ Unicode の East Asian Width を得られるライブラリ。
 日本語などの表示では半角英数字などのような半角文字とは別に全角文字が使われます。  
 これらの文字の幅に関する定義が [Unicode Standard Annex #11](http://www.unicode.org/reports/tr11/) でされているようです。
 
-Ambiguous, Fullwidth, Halfwidth, Narrow, Wide, または Neutral ( =東アジアではない ) の 6 つの値のいずれかが各 Unicode 文字に割り当てられています。
+Ambiguous, Fullwidth, Halfwidth, Narrow, Wide または Neutral ( =東アジアではない ) の 6 つの値のいずれかが各 Unicode 文字に割り当てられています。
 
 Narrow と Halfwidth は半角、 Wide と Fullwidth は全角として  
 日本語などのコンテキストでは Ambiguous も全角とすれば概ね問題ないのですが  
 Neutral は easta の範囲外なので別途対処が要ります…。  
 たとえば制御文字は文字が表示されないので幅を 0 をして扱いたいですが ç は 1 にしたいです。
 
-下記のようなスクリプトで UnicodeData を生成して……
+下記のようなスクリプトで UnicodeData を生成して…
 
 ```typescript
-import { fetch } from 'cross-fetch'
 import { writeFile } from 'fs/promises'
 import { join } from 'path'
 
@@ -109,4 +108,4 @@ Unicode の仕様を読み込む必要があるなど大変な点もあります
 
 # 感想
 
-Unicode とてもむずかしい……
+Unicode とてもむずかしい…
