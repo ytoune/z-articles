@@ -19,7 +19,7 @@
     "textlint-filter-rule-comments": "1.2.2",
     "textlint-rule-preset-ja-spacing": "2.3.0",
     "textlint-rule-preset-ja-technical-writing": "10.0.1",
-    "zenn-cli": "0.1.150"
+    "zenn-cli": "0.1.154"
   },
   "prettier": {
     "useTabs": false,
