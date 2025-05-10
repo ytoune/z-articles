@@ -19,10 +19,7 @@ published: false
 ---
 
 ${body}`
-    await fs.writeFile(
-      path.resolve(__dirname, '../articles/' + ts + '__-' + page.id + '.md'),
-      text,
-    )
+    await fs.writeFile(path.resolve(__dirname, '../articles/' + ts + '__-' + page.id + '.md'), text)
   }
 
   // await fs.writeFile(path.resolve(__dirname, 'pages.json'), JSON.stringify(list))
