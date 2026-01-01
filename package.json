@@ -51,7 +51,14 @@
             "と"
           ]
         },
-        "ja-no-weak-phrase": false
+        "ja-no-weak-phrase": false,
+        "ja-no-mixed-period": {
+          "allowPeriodMarks": [
+            ":",
+            "…"
+          ]
+        },
+        "sentence-length": false
       },
       "preset-ja-spacing": {
         "ja-space-between-half-and-full-width": {
@@ -62,14 +69,7 @@
           "before": true,
           "after": true
         }
-      },
-      "ja-technical-writing/ja-no-mixed-period": {
-        "allowPeriodMarks": [
-          ":",
-          "…"
-        ]
-      },
-      "ja-technical-writing/sentence-length": false
+      }
     },
     "filters": {
       "comments": true,
